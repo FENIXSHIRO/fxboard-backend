@@ -47,7 +47,19 @@ export class Item {
   @Prop({ type: Object, required: false })
   text: any;
 
-  @Prop({ type: [Object], required: false })
+  @Prop([
+    {
+      id: { type: String, required: true },
+      x: { type: Number, required: true },
+      y: { type: Number, required: true },
+      radius: { type: Number, required: true },
+      fill: { type: String, required: true },
+      stroke: { type: String, required: true },
+      strokeWidth: { type: Number, required: true },
+      scaleX: { type: Number, required: true },
+      scaleY: { type: Number, required: true },
+    },
+  ])
   connectionInput: any[];
 }
 
