@@ -41,7 +41,6 @@ export class BoardsService {
     const board = await this.boardModel.findById(boardId).exec();
     board.items.push(newItem);
     console.log(board.items);
-    await newItem.save();
     return board.save();
   }
 }
