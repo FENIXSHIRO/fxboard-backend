@@ -19,7 +19,7 @@ export class BoardsController {
     return this.boardsService.getAllBoards();
   }
 
-  @Get('byUser:userId')
+  @Get('byUser/:userId')
   async getBoardsForUser(@Param('userId') userId: string): Promise<Board[]> {
     return this.boardsService.getBoardsForUser(userId);
   }
