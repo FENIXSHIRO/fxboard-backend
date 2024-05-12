@@ -6,6 +6,9 @@ export type ItemDocument = Item & Document;
 @Schema()
 export class Item {
   @Prop({ required: true })
+  id: string;
+
+  @Prop({ required: true })
   x: number;
 
   @Prop({ required: true })
@@ -31,9 +34,6 @@ export class Item {
 
   @Prop({ required: true })
   scaleY: number;
-
-  @Prop({ required: true })
-  id: string;
 
   @Prop({ required: true })
   draggable: boolean;

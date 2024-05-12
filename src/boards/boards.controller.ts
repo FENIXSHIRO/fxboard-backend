@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   NotFoundException,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { Board } from 'src/schemas/Board.schema';
@@ -33,7 +35,7 @@ export class BoardsController {
     return items;
   }
 
-  @Post(':userId')
+  @Post(':userId/create')
   async createBoard(
     @Param('userId') userId: string,
     @Body('name') name: string,
@@ -41,11 +43,27 @@ export class BoardsController {
     return this.boardsService.createBoard(name, userId);
   }
 
-  @Post(':boardId/items')
+  @Post(':boardId/items/add')
   async addItemToBoard(
     @Param('boardId') boardId: string,
     @Body() itemData: any,
   ): Promise<Board> {
     return this.boardsService.addItemToBoard(boardId, itemData);
+  }
+
+  @Patch(':boardId/items')
+  async updateBoardItems(
+    @Param('boardId') boardId: string,
+    @Body() itemData: any,
+  ) {
+    return this.boardsService.updateBoardItems(boardId, itemData);
+  }
+
+  @Delete(':boardId/items/:itemId')
+  async deleteitemFromBoard(
+    @Param('boardId') boardId: string,
+    @Param('itemId') itemId: string,
+  ): Promise<Board> {
+    return this.boardsService.deleteitemFromBoard(boardId, itemId);
   }
 }

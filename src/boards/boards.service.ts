@@ -43,4 +43,16 @@ export class BoardsService {
     console.log(board.items);
     return board.save();
   }
+
+  async updateBoardItems(boardId: string, itemData: any): Promise<Board> {
+    const board = await this.boardModel.findById(boardId).exec();
+    board.items = itemData;
+    return board.save();
+  }
+
+  async deleteitemFromBoard(boardId: string, itemId: string) {
+    const board = await this.boardModel.findById(boardId).exec();
+    board.items = board.items.filter((item) => item.id !== itemId);
+    return board.save();
+  }
 }
